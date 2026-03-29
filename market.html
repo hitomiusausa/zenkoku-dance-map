@@ -14,10 +14,22 @@
     <style>
         /* ===== ヒーロー ===== */
         .market-hero {
-            background: var(--color-1);
+            position: relative;
+            background: url('images/dance1.png') center/cover no-repeat;
             color: #fff;
             text-align: center;
-            padding: 52px 20px 44px;
+            padding: 80px 20px 70px;
+            overflow: hidden;
+        }
+        .market-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 20, 50, 0.68);
+        }
+        .market-hero > * {
+            position: relative;
+            z-index: 1;
         }
         .market-hero .badge {
             display: inline-block;
@@ -31,17 +43,19 @@
             letter-spacing: 0.08em;
         }
         .market-hero h1 {
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 700;
             color: #fff;
-            margin: 0 0 14px 0;
+            margin: 0 0 16px 0;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.4);
         }
         .market-hero p {
             font-size: 16px;
-            color: rgba(255,255,255,0.82);
-            max-width: 520px;
+            color: rgba(255,255,255,0.88);
+            max-width: 540px;
             margin: 0 auto;
-            line-height: 1.8;
+            line-height: 1.85;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.35);
         }
 
         /* ===== アンカーナビ（タブ風） ===== */
@@ -188,22 +202,32 @@
             background: #fff;
             border: 1px solid var(--color-border);
             border-radius: 14px;
-            padding: 22px 16px 18px;
+            overflow: hidden;
             text-align: center;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
         }
         .costume-category-card:hover {
             border-color: var(--color-2);
-            box-shadow: 0 4px 14px rgba(27,79,114,0.1);
+            box-shadow: 0 6px 18px rgba(27,79,114,0.13);
+            transform: translateY(-3px);
         }
-        .cat-icon  { font-size: 32px; display: block; margin-bottom: 10px; }
-        .cat-name  { font-size: 15px; font-weight: 700; color: var(--color-text); display: block; margin-bottom: 10px; }
+        .cat-photo {
+            width: 100%;
+            height: 110px;
+            background-size: cover;
+            background-position: center;
+        }
+        .cat-card-body {
+            padding: 14px 14px 16px;
+        }
+        .cat-icon  { font-size: 24px; display: block; margin-bottom: 7px; }
+        .cat-name  { font-size: 14px; font-weight: 700; color: var(--color-text); display: block; margin-bottom: 10px; }
         .cat-search-btn {
             display: inline-block;
-            padding: 7px 18px;
+            padding: 7px 14px;
             background: var(--color-1);
             color: #fff;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             border-radius: 20px;
             text-decoration: none;
@@ -421,11 +445,13 @@
 
         /* ===== レスポンシブ ===== */
         @media (max-width: 768px) {
-            .market-hero h1 { font-size: 26px; }
+            .market-hero { padding: 60px 20px 52px; }
+            .market-hero h1 { font-size: 28px; }
             .platform-grid  { grid-template-columns: repeat(2, 1fr); }
             .shop-grid      { grid-template-columns: 1fr; }
             .pr-grid        { grid-template-columns: 1fr; }
             .costume-category-grid { grid-template-columns: repeat(3, 1fr); }
+            .cat-photo { height: 90px; }
         }
     </style>
 </head>
@@ -512,40 +538,58 @@
             <p class="section-sub">種類で絞り込んで検索できます</p>
             <div class="costume-category-grid">
                 <div class="costume-category-card">
-                    <span class="cat-icon">💃</span>
-                    <span class="cat-name">競技ドレス</span>
-                    <a href="https://auctions.yahoo.co.jp/search/search?p=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E7%AB%B6%E6%8A%80%E3%83%89%E3%83%AC%E3%82%B9" target="_blank" class="cat-search-btn">🔍 検索する</a>
-                    <span class="cat-platform-note">ヤフオクで検索</span>
+                    <div class="cat-photo" style="background-image: url('images/dance1.png');"></div>
+                    <div class="cat-card-body">
+                        <span class="cat-icon">💃</span>
+                        <span class="cat-name">競技ドレス</span>
+                        <a href="https://auctions.yahoo.co.jp/search/search?p=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E7%AB%B6%E6%8A%80%E3%83%89%E3%83%AC%E3%82%B9" target="_blank" class="cat-search-btn">🔍 検索する</a>
+                        <span class="cat-platform-note">ヤフオクで検索</span>
+                    </div>
                 </div>
                 <div class="costume-category-card">
-                    <span class="cat-icon">👗</span>
-                    <span class="cat-name">パーティドレス</span>
-                    <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%83%89%E3%83%AC%E3%82%B9" target="_blank" class="cat-search-btn">🔍 検索する</a>
-                    <span class="cat-platform-note">メルカリで検索</span>
+                    <div class="cat-photo" style="background-image: url('images/dance3.png'); background-position: top center;"></div>
+                    <div class="cat-card-body">
+                        <span class="cat-icon">👗</span>
+                        <span class="cat-name">パーティドレス</span>
+                        <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%83%89%E3%83%AC%E3%82%B9" target="_blank" class="cat-search-btn">🔍 検索する</a>
+                        <span class="cat-platform-note">メルカリで検索</span>
+                    </div>
                 </div>
                 <div class="costume-category-card">
-                    <span class="cat-icon">👠</span>
-                    <span class="cat-name">ダンスシューズ</span>
-                    <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA" target="_blank" class="cat-search-btn">🔍 検索する</a>
-                    <span class="cat-platform-note">メルカリで検索</span>
+                    <div class="cat-photo" style="background-image: url('images/dance2.png');"></div>
+                    <div class="cat-card-body">
+                        <span class="cat-icon">👠</span>
+                        <span class="cat-name">ダンスシューズ</span>
+                        <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA" target="_blank" class="cat-search-btn">🔍 検索する</a>
+                        <span class="cat-platform-note">メルカリで検索</span>
+                    </div>
                 </div>
                 <div class="costume-category-card">
-                    <span class="cat-icon">💎</span>
-                    <span class="cat-name">アクセサリー</span>
-                    <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5%E3%83%AA%E3%83%BC" target="_blank" class="cat-search-btn">🔍 検索する</a>
-                    <span class="cat-platform-note">メルカリで検索</span>
+                    <div class="cat-photo" style="background-color: var(--color-5); display: flex; align-items: center; justify-content: center; font-size: 42px;">💎</div>
+                    <div class="cat-card-body">
+                        <span class="cat-icon">💎</span>
+                        <span class="cat-name">アクセサリー</span>
+                        <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5%E3%83%AA%E3%83%BC" target="_blank" class="cat-search-btn">🔍 検索する</a>
+                        <span class="cat-platform-note">メルカリで検索</span>
+                    </div>
                 </div>
                 <div class="costume-category-card">
-                    <span class="cat-icon">🕺</span>
-                    <span class="cat-name">メンズ衣装</span>
-                    <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%83%A1%E3%83%B3%E3%82%BA+%E8%A1%A3%E8%A3%85" target="_blank" class="cat-search-btn">🔍 検索する</a>
-                    <span class="cat-platform-note">メルカリで検索</span>
+                    <div class="cat-photo" style="background-color: var(--color-1); display: flex; align-items: center; justify-content: center; font-size: 42px;">🕺</div>
+                    <div class="cat-card-body">
+                        <span class="cat-icon">🕺</span>
+                        <span class="cat-name">メンズ衣装</span>
+                        <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%83%A1%E3%83%B3%E3%82%BA+%E8%A1%A3%E8%A3%85" target="_blank" class="cat-search-btn">🔍 検索する</a>
+                        <span class="cat-platform-note">メルカリで検索</span>
+                    </div>
                 </div>
                 <div class="costume-category-card">
-                    <span class="cat-icon">📦</span>
-                    <span class="cat-name">その他用品</span>
-                    <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E7%94%A8%E5%93%81" target="_blank" class="cat-search-btn">🔍 検索する</a>
-                    <span class="cat-platform-note">メルカリで検索</span>
+                    <div class="cat-photo" style="background-color: var(--color-2); display: flex; align-items: center; justify-content: center; font-size: 42px;">📦</div>
+                    <div class="cat-card-body">
+                        <span class="cat-icon">📦</span>
+                        <span class="cat-name">その他用品</span>
+                        <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E7%94%A8%E5%93%81" target="_blank" class="cat-search-btn">🔍 検索する</a>
+                        <span class="cat-platform-note">メルカリで検索</span>
+                    </div>
                 </div>
             </div>
         </section>
