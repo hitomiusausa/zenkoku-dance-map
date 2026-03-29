@@ -4,266 +4,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全国ダンスマップ - マーケット</title>
-    <meta name="description" content="社交ダンスの衣装・ドレス・シューズ・アクセサリーを売り買いできるマーケットプレイス。ダンサー同士で直接取引できます。">
+    <title>全国ダンスマップ - 衣装マーケット</title>
+    <meta name="description" content="社交ダンスの衣装・ドレス・シューズ・アクセサリーを探す・譲る・お知らせする。全国の衣装ショップ一覧、個人間フリマ、ショップからのお知らせを一か所に。">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="animate.min.css">
     <style>
-        /* ===== マーケットページ専用スタイル ===== */
+        /* ===== ヒーロー ===== */
         .market-hero {
             background: var(--color-1);
             color: #fff;
             text-align: center;
-            padding: 64px 20px 56px;
+            padding: 52px 20px 44px;
         }
         .market-hero .badge {
             display: inline-block;
-            background: var(--color-4);
+            background: var(--color-5);
             color: #fff;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             padding: 4px 14px;
             border-radius: 20px;
-            margin-bottom: 20px;
-            letter-spacing: 0.05em;
+            margin-bottom: 18px;
+            letter-spacing: 0.08em;
         }
         .market-hero h1 {
             font-size: 36px;
             font-weight: 700;
             color: #fff;
-            margin: 0 0 16px 0;
-            line-height: 1.3;
+            margin: 0 0 14px 0;
         }
         .market-hero p {
-            font-size: 17px;
-            color: rgba(255,255,255,0.88);
-            max-width: 560px;
-            margin: 0 auto 32px;
+            font-size: 16px;
+            color: rgba(255,255,255,0.82);
+            max-width: 520px;
+            margin: 0 auto;
             line-height: 1.8;
         }
-        .hero-notify-form {
+
+        /* ===== タブナビ ===== */
+        .market-tabs {
+            background: #fff;
+            border-bottom: 2px solid var(--color-border);
+            position: sticky;
+            top: 72px;
+            z-index: 100;
+        }
+        .market-tabs-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 20px;
+        }
+        .market-tab-btn {
+            padding: 16px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+        .market-tab-btn.active {
+            color: var(--color-1);
+            border-bottom-color: var(--color-1);
+        }
+        .market-tab-btn:hover:not(.active) {
+            color: var(--color-1);
+        }
+
+        /* ===== タブコンテンツ ===== */
+        .market-content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 36px 20px 60px;
+        }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* ===== 衣装を探す ===== */
+        .search-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-1);
+            margin: 0 0 16px 0;
+            padding-left: 10px;
+            border-left: 4px solid var(--color-1);
+        }
+        .costume-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+        .costume-category-card {
+            background: #fff;
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 22px 16px 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .costume-category-card:hover {
+            border-color: var(--color-2);
+            box-shadow: 0 4px 14px rgba(27,79,114,0.1);
+        }
+        .costume-category-card .cat-icon { font-size: 32px; display: block; margin-bottom: 10px; }
+        .costume-category-card .cat-name { font-size: 15px; font-weight: 700; color: var(--color-text); display: block; margin-bottom: 10px; }
+        .cat-search-btn {
+            display: inline-block;
+            padding: 7px 18px;
+            background: var(--color-1);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .cat-search-btn:hover { background: #154360; }
+        .coming-soon-notice {
+            background: var(--color-3);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        .coming-soon-notice p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin: 0 0 12px 0;
+        }
+        .notify-form {
             display: flex;
             gap: 10px;
-            max-width: 460px;
+            max-width: 420px;
             margin: 0 auto;
             flex-wrap: wrap;
             justify-content: center;
         }
-        .hero-notify-form input[type="email"] {
+        .notify-form input[type="email"] {
             flex: 1;
-            min-width: 240px;
-            padding: 13px 18px;
+            min-width: 220px;
+            padding: 10px 14px;
+            border: 1px solid var(--color-border);
             border-radius: 8px;
-            border: none;
-            font-size: 15px;
+            font-size: 14px;
             color: #333;
             outline: none;
         }
-        .hero-notify-form button {
-            padding: 13px 24px;
+        .notify-form input[type="email"]:focus { border-color: var(--color-1); }
+        .notify-form button {
+            padding: 10px 20px;
             background: var(--color-4);
             color: #fff;
             border: none;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
             transition: background 0.2s;
-            white-space: nowrap;
         }
-        .hero-notify-form button:hover {
-            background: #e8766b;
-        }
-        .hero-note {
-            font-size: 13px;
-            color: rgba(255,255,255,0.65);
-            margin-top: 12px;
-        }
+        .notify-form button:hover { background: #e8766b; }
 
-        /* ===== 特徴セクション ===== */
-        .market-features {
-            max-width: 960px;
-            margin: 56px auto;
-            padding: 0 20px;
+        /* ===== 衣装ショップ一覧 ===== */
+        .shop-filter-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
         }
-        .market-features h2 {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--color-1);
-            margin: 0 0 36px 0;
+        .shop-filter-btn {
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid var(--color-border);
+            background: #fff;
+            color: var(--color-text-secondary);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .feature-grid {
+        .shop-filter-btn.active, .shop-filter-btn:hover {
+            background: var(--color-1);
+            color: #fff;
+            border-color: var(--color-1);
+        }
+        .shop-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
         }
-        .feature-card {
+        .shop-card {
             background: #fff;
             border: 1px solid var(--color-border);
             border-radius: 14px;
-            padding: 28px 24px;
-            text-align: center;
-        }
-        .feature-card .icon {
-            font-size: 36px;
-            margin-bottom: 14px;
-            display: block;
-        }
-        .feature-card h3 {
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--color-1);
-            margin: 0 0 10px 0;
-        }
-        .feature-card p {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        /* ===== カテゴリセクション ===== */
-        .market-categories {
-            background: var(--color-3);
-            padding: 56px 20px;
-        }
-        .market-categories-inner {
-            max-width: 960px;
-            margin: 0 auto;
-        }
-        .market-categories h2 {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--color-1);
-            margin: 0 0 36px 0;
-        }
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 14px;
-        }
-        .category-item {
-            background: #fff;
-            border: 1px solid var(--color-border);
-            border-radius: 12px;
-            padding: 20px 16px;
-            text-align: center;
-            cursor: default;
+            padding: 20px;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .category-item:hover {
-            border-color: var(--color-1);
-            box-shadow: 0 4px 12px rgba(27,79,114,0.1);
+        .shop-card:hover {
+            border-color: var(--color-2);
+            box-shadow: 0 6px 18px rgba(27,79,114,0.08);
         }
-        .category-item .cat-icon {
-            font-size: 28px;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .category-item span {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--color-text);
-        }
-        .category-soon {
-            font-size: 11px;
-            color: var(--color-4);
-            font-weight: 700;
-            display: block;
-            margin-top: 4px;
-        }
-
-        /* ===== フロー ===== */
-        .market-flow {
-            max-width: 800px;
-            margin: 56px auto;
-            padding: 0 20px;
-        }
-        .market-flow h2 {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--color-1);
-            margin: 0 0 36px 0;
-        }
-        .flow-steps {
+        .shop-card-header {
             display: flex;
-            flex-direction: column;
-            gap: 0;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
         }
-        .flow-step {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            position: relative;
-            padding-bottom: 28px;
-        }
-        .flow-step:last-child {
-            padding-bottom: 0;
-        }
-        .flow-step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 19px;
-            top: 44px;
-            width: 2px;
-            height: calc(100% - 44px);
-            background: var(--color-2);
-        }
-        .step-num {
-            width: 40px;
-            height: 40px;
-            background: var(--color-1);
-            color: #fff;
-            border-radius: 50%;
+        .shop-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
+            font-size: 22px;
             flex-shrink: 0;
         }
-        .step-content h3 {
+        .shop-icon.blue  { background: rgba(162,217,206,0.3); }
+        .shop-icon.pink  { background: rgba(241,148,138,0.2); }
+        .shop-icon.purple{ background: rgba(165,105,189,0.2); }
+        .shop-icon.peach { background: rgba(253,235,208,0.8); }
+        .shop-name { font-size: 16px; font-weight: 700; color: var(--color-text); margin: 0; }
+        .shop-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+        .shop-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .tag-shop    { background: rgba(241,148,138,0.15); color: #c0524a; }
+        .tag-area    { background: rgba(27,79,114,0.1);    color: var(--color-1); }
+        .tag-rental  { background: rgba(162,217,206,0.4);  color: #2a7a6e; }
+        .tag-mail    { background: rgba(162,217,206,0.25); color: #2a7a6e; }
+        .tag-order   { background: rgba(165,105,189,0.15); color: #8b4faa; }
+        .tag-brand   { background: rgba(253,235,208,0.8);  color: #b07d3a; }
+        .shop-desc {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+            margin: 0 0 14px 0;
+        }
+        .shop-btns { display: flex; gap: 8px; }
+        .btn-hp {
+            padding: 7px 16px;
+            background: var(--color-1);
+            color: #fff;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-hp:hover { background: #154360; color: #fff; }
+        .btn-tel {
+            padding: 7px 16px;
+            background: #fff;
+            color: var(--color-1);
+            border: 1.5px solid var(--color-1);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-tel:hover { background: var(--color-1); color: #fff; }
+        .shop-list-note {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: var(--color-3);
+            border-radius: 10px;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+        .shop-list-note a { color: var(--color-1); }
+
+        /* ===== 掲示板 ===== */
+        .board-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .board-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 0;
+        }
+        .badge-coming-soon {
+            display: inline-block;
+            padding: 3px 12px;
+            background: var(--color-4);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 12px;
+        }
+        .board-subtitle {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin: 0 0 20px 0;
+        }
+        .board-container {
+            background: #1a2742;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .board-container-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 22px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .board-container-header .board-title {
+            color: #fff;
             font-size: 16px;
             font-weight: 700;
-            color: var(--color-1);
-            margin: 8px 0 6px;
+            margin: 0 0 2px 0;
         }
-        .step-content p {
-            font-size: 14px;
-            color: var(--color-text-secondary);
+        .board-container-header .board-sub {
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+            margin: 0;
+        }
+        .post-btn {
+            padding: 9px 18px;
+            background: var(--color-4);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .post-btn:hover { background: #e8766b; }
+        .board-posts { padding: 0 22px; }
+        .board-post {
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .board-post:last-child { border-bottom: none; }
+        .post-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .post-avatar.dress   { background: rgba(241,148,138,0.25); }
+        .post-avatar.studio  { background: rgba(162,217,206,0.25); }
+        .post-avatar.artist  { background: rgba(165,105,189,0.25); }
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .post-shop-name { font-size: 14px; font-weight: 700; color: #fff; }
+        .post-location  { font-size: 12px; color: rgba(255,255,255,0.55); }
+        .post-type-tag {
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .type-sale   { background: rgba(241,148,138,0.3); color: #f1948a; }
+        .type-give   { background: rgba(162,217,206,0.3); color: #a2d9ce; }
+        .type-rental { background: rgba(162,162,217,0.3); color: #a2a2e8; }
+        .post-date   { font-size: 12px; color: rgba(255,255,255,0.4); margin-left: auto; }
+        .post-title  { font-size: 15px; font-weight: 700; color: #fff; margin: 0 0 6px 0; }
+        .post-body   { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.65; margin: 0 0 8px 0; }
+        .post-price  { font-size: 15px; font-weight: 700; color: var(--color-4); }
+        .board-post-notice {
+            margin: 0 22px 22px;
+            padding: 14px 18px;
+            background: rgba(165,105,189,0.15);
+            border-radius: 10px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+        }
+        .board-post-notice a { color: var(--color-2); }
+
+        /* ===== PRカード ===== */
+        .pr-section {
+            background: var(--color-1);
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        .pr-grid {
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .pr-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+        .pr-card .pr-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.55);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .pr-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-2);
+            margin: 0 0 10px 0;
+        }
+        .pr-card p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
             line-height: 1.7;
             margin: 0;
         }
 
-        /* ===== CTA ===== */
-        .market-cta {
-            background: var(--color-1);
-            color: #fff;
-            text-align: center;
-            padding: 56px 20px;
-        }
-        .market-cta h2 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
-            margin: 0 0 14px 0;
-        }
-        .market-cta p {
-            font-size: 16px;
-            color: rgba(255,255,255,0.85);
-            margin: 0 0 28px 0;
-        }
-
+        /* ===== レスポンシブ ===== */
         @media (max-width: 768px) {
             .market-hero h1 { font-size: 26px; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .category-grid { grid-template-columns: repeat(3, 1fr); }
+            .market-tabs-inner { overflow-x: auto; padding: 0 12px; }
+            .market-tab-btn { padding: 14px 16px; font-size: 14px; }
+            .shop-grid { grid-template-columns: 1fr; }
+            .pr-grid { grid-template-columns: 1fr; }
+            .costume-category-grid { grid-template-columns: repeat(3, 1fr); }
+            .board-container-header { flex-direction: column; gap: 12px; align-items: flex-start; }
         }
     </style>
 </head>
@@ -288,119 +483,224 @@
 
     <!-- ヒーロー -->
     <section class="market-hero">
-        <span class="badge">🚧 準備中 — まもなく公開</span>
-        <h1>社交ダンス衣装・用品の<br>フリマプレイス</h1>
-        <p>ドレス・シューズ・アクセサリーをダンサー同士で売り買い。全国ダンスマップが運営する、ダンス専門のマーケットプレイスです。</p>
-        <div class="hero-notify-form">
-            <input type="email" placeholder="メールアドレスを入力">
-            <button type="submit">公開を通知する</button>
-        </div>
-        <p class="hero-note">登録いただいたメールアドレスは公開通知のみに使用します。</p>
+        <span class="badge">NEW PAGE</span>
+        <h1>👗 衣装マーケット</h1>
+        <p>社交ダンスの衣装・ドレス・シューズ・アクセサリーを探す・譲る・お知らせする。ダンスマップが衣装もサポートします。</p>
     </section>
 
-    <!-- 特徴 -->
-    <section class="market-features">
-        <h2>マーケットでできること</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="icon">👗</span>
-                <h3>衣装を売る</h3>
-                <p>着なくなったドレスやシューズを必要としているダンサーに直接販売。写真と説明を投稿するだけ。</p>
-            </div>
-            <div class="feature-card">
-                <span class="icon">🔍</span>
-                <h3>衣装を探す</h3>
-                <p>カテゴリ・サイズ・価格で絞り込み検索。相場より安く良品を見つけられます。</p>
-            </div>
-            <div class="feature-card">
-                <span class="icon">🤝</span>
-                <h3>安心して取引</h3>
-                <p>ダンサー同士のコミュニティで取引。用途を知っているから説明不要、スムーズなやり取りができます。</p>
-            </div>
+    <!-- タブナビ -->
+    <div class="market-tabs">
+        <div class="market-tabs-inner">
+            <button class="market-tab-btn active" data-tab="search">🔍 衣装を探す</button>
+            <button class="market-tab-btn" data-tab="shops">👗 衣装ショップ一覧</button>
+            <button class="market-tab-btn" data-tab="board">📢 ショップ・教室からのお知らせ</button>
         </div>
-    </section>
+    </div>
 
-    <!-- カテゴリ -->
-    <section class="market-categories">
-        <div class="market-categories-inner">
-            <h2>商品カテゴリ</h2>
-            <div class="category-grid">
-                <div class="category-item">
-                    <span class="cat-icon">👗</span>
-                    <span>競技ドレス</span>
-                    <span class="category-soon">準備中</span>
-                </div>
-                <div class="category-item">
+    <!-- メインコンテンツ -->
+    <div class="market-content">
+
+        <!-- タブ1：衣装を探す -->
+        <div class="tab-panel active" id="tab-search">
+            <p class="search-section-title">カテゴリから衣装を探す</p>
+            <div class="costume-category-grid">
+                <div class="costume-category-card">
                     <span class="cat-icon">💃</span>
-                    <span>パーティドレス</span>
-                    <span class="category-soon">準備中</span>
+                    <span class="cat-name">競技ドレス</span>
+                    <button class="cat-search-btn">検索する</button>
                 </div>
-                <div class="category-item">
+                <div class="costume-category-card">
+                    <span class="cat-icon">👗</span>
+                    <span class="cat-name">パーティドレス</span>
+                    <button class="cat-search-btn">検索する</button>
+                </div>
+                <div class="costume-category-card">
                     <span class="cat-icon">👠</span>
-                    <span>ダンスシューズ</span>
-                    <span class="category-soon">準備中</span>
+                    <span class="cat-name">ダンスシューズ</span>
+                    <button class="cat-search-btn">検索する</button>
                 </div>
-                <div class="category-item">
+                <div class="costume-category-card">
                     <span class="cat-icon">💎</span>
-                    <span>アクセサリー</span>
-                    <span class="category-soon">準備中</span>
+                    <span class="cat-name">アクセサリー</span>
+                    <button class="cat-search-btn">検索する</button>
                 </div>
-                <div class="category-item">
+                <div class="costume-category-card">
                     <span class="cat-icon">🕺</span>
-                    <span>メンズ衣装</span>
-                    <span class="category-soon">準備中</span>
+                    <span class="cat-name">メンズ衣装</span>
+                    <button class="cat-search-btn">検索する</button>
                 </div>
-                <div class="category-item">
+                <div class="costume-category-card">
                     <span class="cat-icon">📦</span>
-                    <span>その他用品</span>
-                    <span class="category-soon">準備中</span>
+                    <span class="cat-name">その他用品</span>
+                    <button class="cat-search-btn">検索する</button>
+                </div>
+            </div>
+
+            <div class="coming-soon-notice">
+                <p>個人間の衣装売買・お譲り機能は現在準備中です。公開をメールでお知らせします。</p>
+                <div class="notify-form">
+                    <input type="email" placeholder="メールアドレスを入力">
+                    <button type="submit">公開を通知する</button>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- 利用フロー -->
-    <section class="market-flow">
-        <h2>ご利用の流れ</h2>
-        <div class="flow-steps">
-            <div class="flow-step">
-                <div class="step-num">1</div>
-                <div class="step-content">
-                    <h3>無料会員登録</h3>
-                    <p>メールアドレスだけで登録完了。出品も購入も無料でできます。</p>
+        <!-- タブ2：衣装ショップ一覧 -->
+        <div class="tab-panel" id="tab-shops">
+            <p style="font-size:14px; color:var(--color-text-secondary); margin:0 0 20px 0;">新品・オーダーメイドはこちら。全国の社交ダンス衣装専門ショップをまとめました。</p>
+            <div class="shop-filter-bar">
+                <button class="shop-filter-btn active" data-filter="all">すべて</button>
+                <button class="shop-filter-btn" data-filter="shop">実店舗あり</button>
+                <button class="shop-filter-btn" data-filter="order">オーダーメイド</button>
+                <button class="shop-filter-btn" data-filter="rental">レンタルあり</button>
+                <button class="shop-filter-btn" data-filter="mail">通販対応</button>
+            </div>
+            <div class="shop-grid">
+                <div class="shop-card" data-tags="shop mail rental">
+                    <div class="shop-card-header">
+                        <div class="shop-icon pink">👗</div>
+                        <h3 class="shop-name">ドレスのフジタ</h3>
+                    </div>
+                    <div class="shop-tags">
+                        <span class="shop-tag tag-shop">実店舗</span>
+                        <span class="shop-tag tag-area">東京</span>
+                        <span class="shop-tag tag-rental">レンタルあり</span>
+                    </div>
+                    <p class="shop-desc">500着以上のドレスを展示。高級社交ダンス衣装の専門店。レンタル・購入どちらも対応。</p>
+                    <div class="shop-btns">
+                        <a href="#" class="btn-hp">🌐 HPへ</a>
+                        <a href="tel:000-0000-0000" class="btn-tel">📞 電話</a>
+                    </div>
+                </div>
+                <div class="shop-card" data-tags="mail order">
+                    <div class="shop-card-header">
+                        <div class="shop-icon blue">👠</div>
+                        <h3 class="shop-name">社交ダンス衣装 ジルバ</h3>
+                    </div>
+                    <div class="shop-tags">
+                        <span class="shop-tag tag-mail">通販</span>
+                        <span class="shop-tag tag-area">全国配送</span>
+                    </div>
+                    <p class="shop-desc">12年以上の実績を持つオリジナルブランド。ラテン・スタンダード衣装を製作・販売。</p>
+                    <div class="shop-btns">
+                        <a href="#" class="btn-hp">🌐 HPへ</a>
+                    </div>
+                </div>
+                <div class="shop-card" data-tags="mail">
+                    <div class="shop-card-header">
+                        <div class="shop-icon peach">⭐</div>
+                        <h3 class="shop-name">ボールルームネット</h3>
+                    </div>
+                    <div class="shop-tags">
+                        <span class="shop-tag tag-mail">通販</span>
+                        <span class="shop-tag tag-area">全国配送</span>
+                        <span class="shop-tag tag-brand">海外ブランド</span>
+                    </div>
+                    <p class="shop-desc">世界の有名社交ダンスブランド25社を取扱う日本最大級の通販サイト。</p>
+                    <div class="shop-btns">
+                        <a href="#" class="btn-hp">🌐 HPへ</a>
+                    </div>
+                </div>
+                <div class="shop-card" data-tags="mail order">
+                    <div class="shop-card-header">
+                        <div class="shop-icon purple">✨</div>
+                        <h3 class="shop-name">社交ダンス衣装アルル</h3>
+                    </div>
+                    <div class="shop-tags">
+                        <span class="shop-tag tag-order">オーダー</span>
+                        <span class="shop-tag tag-area">全国配送</span>
+                    </div>
+                    <p class="shop-desc">格安通販でありながらオーダーメイドにも対応。初心者向けのリーズナブルなラインも充実。</p>
+                    <div class="shop-btns">
+                        <a href="#" class="btn-hp">🌐 HPへ</a>
+                    </div>
                 </div>
             </div>
-            <div class="flow-step">
-                <div class="step-num">2</div>
-                <div class="step-content">
-                    <h3>商品を出品 / 検索</h3>
-                    <p>写真を撮って説明を書くだけで出品。カテゴリやサイズで絞り込んで欲しい商品を探せます。</p>
-                </div>
+            <p class="shop-list-note">掲載をご希望のショップ様は<a href="contact.html">お問い合わせフォーム</a>よりご連絡ください。掲載は無料です。</p>
+        </div>
+
+        <!-- タブ3：ショップ・教室からのお知らせ -->
+        <div class="tab-panel" id="tab-board">
+            <div class="board-header">
+                <h2>📢 ショップ・教室からのお知らせ</h2>
+                <span class="badge-coming-soon">COMING SOON</span>
             </div>
-            <div class="flow-step">
-                <div class="step-num">3</div>
-                <div class="step-content">
-                    <h3>メッセージで交渉</h3>
-                    <p>出品者・購入希望者でメッセージのやり取り。価格交渉や詳細確認もできます。</p>
+            <p class="board-subtitle">教室・ショップが直接投稿できる掲示板機能（準備中のプレビューです）</p>
+
+            <div class="board-container">
+                <div class="board-container-header">
+                    <div>
+                        <p class="board-title">衣装・用品 お知らせ掲示板</p>
+                        <p class="board-sub">教室・ショップからの衣装情報・セール・お譲り情報をまとめてチェック</p>
+                    </div>
+                    <button class="post-btn">＋ お知らせを投稿する</button>
                 </div>
-            </div>
-            <div class="flow-step">
-                <div class="step-num">4</div>
-                <div class="step-content">
-                    <h3>発送・受け取り完了</h3>
-                    <p>支払い後に発送。受け取り確認で取引完了。レビューを書いてコミュニティを育てましょう。</p>
+
+                <div class="board-posts">
+                    <div class="board-post">
+                        <div class="post-avatar dress">👗</div>
+                        <div style="flex:1;">
+                            <div class="post-meta">
+                                <span class="post-shop-name">ドレスショップ フラメンコ</span>
+                                <span class="post-location">東京・渋谷</span>
+                                <span class="post-type-tag type-sale">セール</span>
+                                <span class="post-date">2026年3月29日</span>
+                            </div>
+                            <p class="post-title">春の衣装セール開催中🌸 ラテンドレス最大40%OFF</p>
+                            <p class="post-body">在庫処分のため、ラテン・スタンダードドレスを大幅値引き中。サイズはM〜XLまで多数あり。店頭またはオンラインでご覧いただけます。</p>
+                            <p class="post-price">¥18,000〜（定価¥30,000〜）</p>
+                        </div>
+                    </div>
+                    <div class="board-post">
+                        <div class="post-avatar studio">🏫</div>
+                        <div style="flex:1;">
+                            <div class="post-meta">
+                                <span class="post-shop-name">ダンススタジオ アルファ</span>
+                                <span class="post-location">大阪・梅田</span>
+                                <span class="post-type-tag type-give">お譲り</span>
+                                <span class="post-date">2026年3月28日</span>
+                            </div>
+                            <p class="post-title">生徒さん使用の衣装をお譲りします（スタンダード2点）</p>
+                            <p class="post-body">教室で使用していたスタンダードドレス2点（Size M）を格安でお譲りします。状態は良好。詳しくは教室まで直接お問い合わせください。</p>
+                        </div>
+                    </div>
+                    <div class="board-post">
+                        <div class="post-avatar artist">💃</div>
+                        <div style="flex:1;">
+                            <div class="post-meta">
+                                <span class="post-shop-name">NANAKA GENESIIS TOKYO</span>
+                                <span class="post-location">東京</span>
+                                <span class="post-type-tag type-rental">レンタル</span>
+                                <span class="post-date">2026年3月27日</span>
+                            </div>
+                            <p class="post-title">発表会・競技会向け レンタルドレス受付開始</p>
+                            <p class="post-body">春の大会シーズンに向けてレンタルドレスの受付を開始しました。ラテン・スタンダード各種、1日〜貸出可能。予約はお早めに。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="board-post-notice">
+                    📌 <strong>掲示板への投稿について（準備中）</strong><br>
+                    教室やショップを運営されている方は、衣装のセール・お譲り・レンタル情報などを無料で掲載できます。<a href="contact.html">お問い合わせフォーム</a>よりご連絡ください。
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- CTA -->
-    <section class="market-cta">
-        <h2>公開をお楽しみに！</h2>
-        <p>まずはメールアドレスを登録して、オープンの第一報を受け取ってください。</p>
-        <div class="hero-notify-form">
-            <input type="email" placeholder="メールアドレスを入力">
-            <button type="submit">公開を通知する</button>
+    </div><!-- /.market-content -->
+
+    <!-- PRカード -->
+    <section class="pr-section">
+        <div class="pr-grid">
+            <div class="pr-card">
+                <span class="pr-label">PR</span>
+                <h3>うさimimWebデザイン</h3>
+                <p>お客様に見てもらえるホームページを作りたい教室運営者の方へ。教室事業に特化したWebデザインを制作します。</p>
+            </div>
+            <div class="pr-card">
+                <span class="pr-label">PR</span>
+                <h3>Tonny'film</h3>
+                <p>貴方のダンスを映像に残しませんか。プロカメラマンがパーティの様子を撮影し、世界で一つの動画に仕上げます。</p>
+            </div>
         </div>
     </section>
 
@@ -418,6 +718,34 @@
         </div>
         <p>&copy; 全国ダンスマップ All rights reserved.</p>
     </footer>
+
+    <script>
+        // タブ切り替え
+        document.querySelectorAll('.market-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.market-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // ショップフィルター
+        document.querySelectorAll('.shop-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.shop-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('.shop-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.tags.includes(filter)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
