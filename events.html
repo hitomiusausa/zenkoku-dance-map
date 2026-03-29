@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>パーティ＆イベント情報</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Noto Sans JPをGoogle Fontsから読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/animate.min.css">
+</head>
+
+<style>
+  /* カレンダーのサイズを80%に縮小 */
+  #calendar {
+    margin-bottom: 10px;
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
+
+
+  /* 検索結果表示エリアのスタイル調整 */
+  #search-results {
+    margin-top: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    height: 300%;
+  }
+
+  /* 見出し（検索結果）の余白調整 */
+  h3 {
+    margin-top: 5px;
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .site-nav ul {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .site-nav a {
+      font-size: 14px;
+    }
+
+    .logo-img {
+      height: 40px;
+    }
+  }
+</style>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+<script src="js/events.js"></script>
+</head>
+
+<body>
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="home.html">
+        <img src="images/dancemaplogo.png" alt="Dance Map Logo"
+          class="logo-img animate__animated animate__pulse animate__infinite animate__slow">
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="home.html" data-tooltip="トップページに戻ります">ホーム</a>
+        </li>
+        <li>
+          <a href="index.html" data-tooltip="全国のダンス教室・練習場・ダンス用品店などを探せます">教室を探す</a>
+        </li>
+        <li>
+          <a href="events.html" data-tooltip="全国のダンスパーティ・サークル活動・ダンス関連イベントを探せます">イベントを探す</a>
+        </li>
+        <li>
+          <a href="contact.html" data-tooltip="お問い合わせはこちら">お問い合わせ</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main>
+    <!-- 全体の2カラムレイアウト -->
+    <div class="main-column">
+
+      <!-- 左カラム：検索結果エリア -->
+      <div class="left-column">
+        <h2>パーティ＆イベント情報</h2>
+
+        <!-- フィルタリングフォーム -->
+        <div id="filter-form">
+          <!-- 日付フィルター -->
+          <label for="date-filter">日付を選択:</label>
+          <input id="date-filter" name="date" type="text" placeholder="日付を選択してください" autocomplete="off">
+        </div>
+
+        <div>
+          <!-- 都道府県フィルター -->
+          <label for="prefecture-filter">県名を選択:</label>
+          <select id="prefecture-filter" name="prefecture">
+            <option value="">すべて</option>
+            <option value="北海道">北海道</option>
+            <option value="青森県">青森県</option>
+            <option value="岩手県">岩手県</option>
+            <option value="宮城県">宮城県</option>
+            <option value="秋田県">秋田県</option>
+            <option value="山形県">山形県</option>
+            <option value="福島県">福島県</option>
+            <option value="茨城県">茨城県</option>
+            <option value="栃木県">栃木県</option>
+            <option value="群馬県">群馬県</option>
+            <option value="埼玉県">埼玉県</option>
+            <option value="千葉県">千葉県</option>
+            <option value="東京都">東京都</option>
+            <option value="神奈川県">神奈川県</option>
+            <option value="新潟県">新潟県</option>
+            <option value="富山県">富山県</option>
+            <option value="石川県">石川県</option>
+            <option value="福井県">福井県</option>
+            <option value="山梨県">山梨県</option>
+            <option value="長野県">長野県</option>
+            <option value="岐阜県">岐阜県</option>
+            <option value="静岡県">静岡県</option>
+            <option value="愛知県">愛知県</option>
+            <option value="三重県">三重県</option>
+            <option value="滋賀県">滋賀県</option>
+            <option value="京都府">京都府</option>
+            <option value="大阪府">大阪府</option>
+            <option value="兵庫県">兵庫県</option>
+            <option value="奈良県">奈良県</option>
+            <option value="和歌山県">和歌山県</option>
+            <option value="鳥取県">鳥取県</option>
+            <option value="島根県">島根県</option>
+            <option value="岡山県">岡山県</option>
+            <option value="広島県">広島県</option>
+            <option value="山口県">山口県</option>
+            <option value="徳島県">徳島県</option>
+            <option value="香川県">香川県</option>
+            <option value="愛媛県">愛媛県</option>
+            <option value="高知県">高知県</option>
+            <option value="福岡県">福岡県</option>
+            <option value="佐賀県">佐賀県</option>
+            <option value="長崎県">長崎県</option>
+            <option value="熊本県">熊本県</option>
+            <option value="大分県">大分県</option>
+            <option value="宮崎県">宮崎県</option>
+            <option value="鹿児島県">鹿児島県</option>
+            <option value="沖縄県">沖縄県</option>
+          </select>
+        </div>
+
+        <!-- 検索ボタン -->
+        <button id="filter-button" name="search-button" type="button">
+          検索
+        </button>
+
+
+        <!-- カレンダー表示エリア -->
+        <div id="calendar"></div>
+
+        <!-- 検索結果表示エリア -->
+        <section id="event-results" class="card-container">
+          <h3>検索結果</h3>
+          <div>
+            <ul id="event-list" class="event-list"></ul>
+          </div>
+        </section>
+
+
+        <!-- 情報募集表示エリア -->
+        <h4>ダンス関係者様</h4>
+        <p>パーティー情報をお寄せください。
+          無料で掲載させていただきます。<br>
+          (掲載までに時間を要することがありますので、早めにお申し込みください)</p>
+      </div>
+
+      <!-- 右カラム：広告エリア -->
+      <aside class="right-column">
+        <div class="advertisement">
+          <h3>ホームページを作りたい...</h3>
+          <img src="images/usagi_chi.png" alt="アプリ広告" style="width: 100%;">
+          <p>集客にはまず見つけてもらえるホームページ作成が必須！</p>
+          <a href="#"><img src="images/app-store.png" alt="App Store" width="100"></a>
+          <a href="#"><img src="images/google-play.png" alt="Google Play" width="100"></a>
+        </div>
+
+        <div class="advertisement">
+          <h3>貴方のダンスを映像に残しませんか</h3>
+          <img src="images/usa_chi2.png" alt="アプリ広告" style="width: 100%;">
+          <p>プロカメラマンがパーティの様子を撮影し、世界で一つの動画に仕上げます</p>
+          <a href="#"><img src="images/app-store.png" alt="App Store" width="100"></a>
+          <a href="#"><img src="images/google-play.png" alt="Google Play" width="100"></a>
+        </div>
+      </aside><!-- 右カラム終了 -->
+
+    </div><!-- main-column 終了 -->
+  </main>
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <nav>
+        <ul>
+          <li><a href="home.html" data-page="index">ホーム</a></li>
+          <li><a href="index.html" data-page="index">教室を探す</a></li>
+          <li><a href="events.html" data-page="events">イベントを探す</a></li>
+          <li><a href="contact.html" data-page="contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p>&copy; 全国ダンスマップ All rights reserved.</p>
+    <nav class="footer-nav"></nav>
+  </footer>
+</body>
+
+</html>

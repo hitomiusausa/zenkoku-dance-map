@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>全国ダンスマップ</title>
+  <link rel="stylesheet" href="styles.css" <!-- Font, CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Noto+Sans+JP:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+
+<body>
+  <div class="container"></div>
+  <header class="site-header">
+    <div class="logo">
+      <a href="home.html">
+        <img src="images/dancemaplogo.png" alt="Dance Map Logo"
+          class="logo-img animate__animated animate__pulse animate__infinite animate__slow">
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="home.html" data-tooltip="トップページに戻ります">ホーム</a>
+        </li>
+        <li>
+          <a href="index.html" data-tooltip="全国のダンス教室・練習場・ダンス用品店などを探せます">教室を探す</a>
+        </li>
+        <li>
+          <a href="events.html" data-tooltip="全国のダンスパーティ・サークル活動・ダンス関連イベントを探せます">イベントを探す</a>
+        </li>
+        <li>
+          <a href="contact.html" data-tooltip="お問い合わせはこちら">お問い合わせ</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-column">
+    <div class="left-column">
+
+      <div id="classroom-map">
+        <div id="selected-prefecture-label" class="highlight-label">地図または地域から選択してください</div>
+
+        <div class="map-section">
+          <button id="find-nearby-btn" class="find-nearby-btn">
+            <span class="icon">📍</span> 現在地周辺から探す
+          </button>
+        </div>
+
+        <!-- PC版：楽天トラベル風 地方ラベル＋都道府県横並びリスト＋右側地図 -->
+        <div class="map-list-layout pc-only">
+          <div class="map-list-left">
+
+            <div class="region-row">
+              <div class="region-row-label">北海道・東北</div>
+              <div class="region-row-prefs">
+                <span class="prefecture-item" data-id="hokkaido">北海道</span>
+                <span class="prefecture-item" data-id="aomori">青森県</span>
+                <span class="prefecture-item" data-id="iwate">岩手県</span>
+                <span class="prefecture-item" data-id="miyagi">宮城県</span>
+                <span class="prefecture-item" data-id="akita">秋田県</span>
+                <span class="prefecture-item" data-id="yamagata">山形県</span>
+                <span class="prefecture-item" data-id="fukushima">福島県</span>
+              </div>
+            </div>
+
+            <div class="region-row">
+              <div class="region-row-label">関東</div>
+              <div class="region-row-prefs">
+                <span class="prefecture-item" data-id="ibaraki">茨城県</span>
+                <span class="prefecture-item" data-id="tochigi">栃木県</span>
+                <span class="prefecture-item" data-id="gunma">群馬県</span>
+                <span class="prefecture-item" data-id="saitama">埼玉県</span>
+                <span class="prefecture-item" data-id="chiba">千葉県</span>
+                <span class="prefecture-item" data-id="tokyo">東京都</span>
+                <span class="prefecture-item" data-id="kanagawa">神奈川県</span>
+              </div>
+            </div>
+
+            <div class="region-row">
+              <div class="region-row-label">中部</div>
+              <div class="region-row-prefs">
+                <span class="prefecture-item" data-id="niigata">新潟県</span>
+                <span class="prefecture-item" data-id="toyama">富山県</span>
+                <span class="prefecture-item" data-id="ishikawa">石川県</span>
+                <span class="prefecture-item" data-id="fukui">福井県</span>
+                <span class="prefecture-item" data-id="yamanashi">山梨県</span>
+                <span class="prefecture-item" data-id="nagano">長野県</span>
+                <span class="prefecture-item" data-id="gifu">岐阜県</span>
+                <span class="prefecture-item" data-id="shizuoka">静岡県</span>
+                <span class="prefecture-item" data-id="aichi">愛知県</span>
+              </div>
+            </div>
+
+            <div class="region-row">
+              <div class="region-row-label">近畿</div>
+              <div class="region-row-prefs">
+                <span class="prefecture-item" data-id="mie">三重県</span>
+                <span class="prefecture-item" data-id="shiga">滋賀県</span>
+                <span class="prefecture-item" data-id="kyoto">京都府</span>
+                <span class="prefecture-item" data-id="osaka">大阪府</span>
+                <span class="prefecture-item" data-id="hyogo">兵庫県</span>
+                <span class="prefecture-item" data-id="nara">奈良県</span>
+                <span class="prefecture-item" data-id="wakayama">和歌山県</span>
+              </div>
+            </div>
+
+            <div class="region-row">
+              <div class="region-row-label">中国</div>
+              <div class="region-row-prefs">
+                <span class="prefecture-item" data-id="tottori">鳥取県</span>
+                <span class="prefecture-item" data-id="shimane">島根県</span>
+                <span class="prefecture-item" data-id="okayama">岡山県</span>
+                <span class="prefecture-item" data-id="hiroshima">広島県</span>
+                <span class="prefecture-item" data-id="yamaguchi">山口県</span>
+              </div>
+            </div>
+
+            <div class="region-row">
+              <div class="region-row-label">四国</div>
+              <div class="region-row-prefs">
+                <span class="prefecture-item" data-id="tokushima">徳島県</span>
+                <span class="prefecture-item" data-id="kagawa">香川県</span>
+                <span class="prefecture-item" data-id="ehime">愛媛県</span>
+                <span class="prefecture-item" data-id="kochi">高知県</span>
+              </div>
+            </div>
+
+            <div class="region-row">
+              <div class="region-row-label">九州・沖縄</div>
+              <div class="region-row-prefs">
+                <span class="prefecture-item" data-id="fukuoka">福岡県</span>
+                <span class="prefecture-item" data-id="saga">佐賀県</span>
+                <span class="prefecture-item" data-id="nagasaki">長崎県</span>
+                <span class="prefecture-item" data-id="kumamoto">熊本県</span>
+                <span class="prefecture-item" data-id="oita">大分県</span>
+                <span class="prefecture-item" data-id="miyazaki">宮崎県</span>
+                <span class="prefecture-item" data-id="kagoshima">鹿児島県</span>
+                <span class="prefecture-item" data-id="okinawa">沖縄県</span>
+              </div>
+            </div>
+
+          </div><!-- /.map-list-left -->
+
+          <div class="map-list-right">
+            <img src="images/japan_map.svg" alt="日本地図" class="map-bg-img">
+          </div>
+        </div><!-- /.map-list-layout -->
+
+      </div><!-- /#classroom-map -->
+
+      <!-- スマホ版：都道府県リスト -->
+      <section id="prefecture-list" class="mobile-only">
+        <h2>都道府県から探す</h2>
+
+        <h3 class="pref-region-header">北海道・東北</h3>
+        <div class="prefecture-grid">
+          <div class="prefecture-item" data-id="hokkaido">北海道<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="aomori">青森県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="iwate">岩手県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="miyagi">宮城県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="akita">秋田県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="yamagata">山形県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="fukushima">福島県<span class="arrow">＞</span></div>
+        </div>
+
+        <h3 class="pref-region-header">関東</h3>
+        <div class="prefecture-grid">
+          <div class="prefecture-item" data-id="ibaraki">茨城県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="tochigi">栃木県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="gunma">群馬県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="saitama">埼玉県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="chiba">千葉県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="tokyo">東京都<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="kanagawa">神奈川県<span class="arrow">＞</span></div>
+        </div>
+
+        <h3 class="pref-region-header">中部</h3>
+        <div class="prefecture-grid">
+          <div class="prefecture-item" data-id="niigata">新潟県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="toyama">富山県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="ishikawa">石川県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="fukui">福井県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="yamanashi">山梨県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="nagano">長野県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="gifu">岐阜県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="shizuoka">静岡県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="aichi">愛知県<span class="arrow">＞</span></div>
+        </div>
+
+        <h3 class="pref-region-header">近畿</h3>
+        <div class="prefecture-grid">
+          <div class="prefecture-item" data-id="mie">三重県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="shiga">滋賀県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="kyoto">京都府<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="osaka">大阪府<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="hyogo">兵庫県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="nara">奈良県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="wakayama">和歌山県<span class="arrow">＞</span></div>
+        </div>
+
+        <h3 class="pref-region-header">中国</h3>
+        <div class="prefecture-grid">
+          <div class="prefecture-item" data-id="tottori">鳥取県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="shimane">島根県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="okayama">岡山県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="hiroshima">広島県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="yamaguchi">山口県<span class="arrow">＞</span></div>
+        </div>
+
+        <h3 class="pref-region-header">四国</h3>
+        <div class="prefecture-grid">
+          <div class="prefecture-item" data-id="tokushima">徳島県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="kagawa">香川県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="ehime">愛媛県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="kochi">高知県<span class="arrow">＞</span></div>
+        </div>
+
+        <h3 class="pref-region-header">九州・沖縄</h3>
+        <div class="prefecture-grid">
+          <div class="prefecture-item" data-id="fukuoka">福岡県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="saga">佐賀県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="nagasaki">長崎県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="kumamoto">熊本県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="oita">大分県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="miyazaki">宮崎県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="kagoshima">鹿児島県<span class="arrow">＞</span></div>
+          <div class="prefecture-item" data-id="okinawa">沖縄県<span class="arrow">＞</span></div>
+        </div>
+      </section>
+
+      <!-- tab-menuは非表示で残す（script.jsが参照するため） -->
+      <section id="tab-menu" style="display:none;">
+        <button class="region" id="hokkaido">北海道</button>
+        <button class="region" id="tohoku">東北</button>
+        <button class="region" id="kanto">関東</button>
+        <button class="tab region" id="chubu">中部</button>
+        <button class="tab region" id="kinki">近畿</button>
+        <button class="tab region" id="chugoku">中国</button>
+        <button class="tab region" id="shikoku">四国</button>
+        <button class="tab region" id="kyushu">九州・沖縄</button>
+      </section>
+
+      <!-- カテゴリータブ -->
+      <section id="sub-tab-menu" style="display:none">
+        <div class="subsub_tytle">
+          <h3>カテゴリ／エリアで絞り込む</h3>
+        </div>
+        <div id="sub-tab-buttons"></div>
+
+        <!-- フリーワード検索 & クリアボタン -->
+        <div class="search-filter-controls">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="free-word-search" placeholder="キーワードで探す (例: 新宿, 初心者, 個人レッスン)">
+          </div>
+          <button id="clear-filters-btn" class="clear-filters" style="display:none;">
+            🧹 条件をクリア
+          </button>
+        </div>
+      </section>
+
+      <section id="classroom-results" class="card-container">
+        <p>地域を選択してください。</p>
+      </section>
+    </div>
+
+    <!-- 右カラム：広告エリア -->
+    <aside class="right-column">
+      <a href="https://usamimidsgn.com/" class="advertisement-link" target="_blank" rel="noopener noreferrer">
+        <div class="advertisement">
+          <h2>うさみみWebデザイン</h2>
+          <h3>お客様に見てもらえるホームページを作りたい教室運営者の方へ</h3>
+          <img src="images/usamimiweb.png" alt="ホームページ制作アプリ広告（ダンス教室向け）" style="width: 100%;">
+          <p>集客には、まず見つけてもらえるホームページ作成が必須！</p>
+          <p>「うさみみWebデザイン」では教室事業に特化したWebデザインを制作します。</p>
+          <p>一緒に地元のお客様に見つけてもらえるWebサイトを作りませんか？</p>
+        </div>
+      </a>
+
+
+      <div class="advertisement">
+        <h2>Tonny'film</h2>
+        <h3>貴方のダンスを映像に残しませんか</h3>
+        <img src="images/usa_chi2.png" alt="ダンスパーティ撮影サービス広告" style="width: 100%;">
+        <p>プロカメラマンがパーティの様子を撮影し、世界で一つの動画に仕上げます</p>
+        <!-- <a href="#"><img src="images/app-store.png" alt="App Store" width="100"></a> -->
+        <!-- <a href="#"><img src="images/google-play.png" alt="Google Play" width="100"></a> -->
+
+      </div>
+      <div class="forschoolcontact">
+        <div class="message-box">
+          <h3>関係者様へ</h3>
+          <h4>
+            <p>本サイトに掲載している社交ダンス関連情報は『全国ダンスマップ』が収集し、ダンスに興味のある方に広くご紹介させていただいております。</p>
+            <p>掲載内容に間違いがある場合、または情報を補足したい場合は大変お手数ですが、こちらのお問い合わせフォームよりご連絡をお願いいたします。</p> <a href="#">お問い合わせフォーム</a>
+            <P>掲載を取り下げたい場合、新しく掲載をご希望の場合も同フォームよりお願いいたします。掲載は無料です。</p>
+          </h4>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <nav>
+        <ul>
+          <li><a href="home.html" data-page="index">ホーム</a></li>
+          <li><a href="index.html" data-page="index">教室を探す</a></li>
+          <li><a href="events.html" data-page="events">イベントを探す</a></li>
+          <li><a href="contact.html" data-page="contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+
+      <h2>対象地域一覧</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <div style="flex: 1 1 300px; min-width: 200px; word-break: keep-all;">
+          <p>北海道（札幌市、小樽市）、青森県、岩手県、宮城県（仙台市）、秋田県、山形県、福島県、</p>
+          <p>茨城県、栃木県、群馬県、埼玉県（さいたま市、川口市）、千葉県（千葉市、船橋市）、</p>
+          <p>東京都（千代田区、中央区、港区、新宿区、文京区、台東区、墨田区、江東区、品川区、目黒区、大田区、世田谷区、渋谷区、中野区、杉並区、豊島区、北区、荒川区、板橋区、練馬区、足立区、葛飾区、江戸川区、八王子市）、</p>
+        </div>
+        <div style="flex: 1 1 300px; min-width: 200px; word-break: keep-all;">
+          <p>神奈川県（横浜市、川崎市、相模原市、箱根町）、新潟県（新潟市）、富山県、石川県、福井県、山梨県、長野県、岐阜県、</p>
+          <p>静岡県（静岡市、浜松市）、愛知県（名古屋市）、三重県、滋賀県、京都府（京都市）、大阪府（大阪市、堺市）、兵庫県（神戸市、姫路市）、奈良県、和歌山県、</p>
+        </div>
+        <div style="flex: 1 1 300px; min-width: 200px; word-break: keep-all;">
+          <p>鳥取県、島根県、岡山県（岡山市）、広島県（広島市）、山口県、徳島県、香川県、愛媛県（松山市）、高知県、</p>
+          <p>福岡県（福岡市、北九州市）、佐賀県、長崎県、熊本県（熊本市）、大分県（由布市）、宮崎県、鹿児島県、沖縄県</p>
+        </div>
+      </div>
+
+      <p>&copy; 全国ダンスマップ All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ページトップへ戻るボタン -->
+  <button id="back-to-top-btn" class="back-to-top" aria-label="ページトップへ戻る">
+    ↑
+  </button>
+
+  <script src="js/script.js?v=2" charset="utf-8"></script>
+</body>
+
+</html>

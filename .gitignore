@@ -1,0 +1,14 @@
+# 開発用・バックアップフォルダ
+unused/
+
+# 開発用比較ページ
+comparison.html
+
+# OS・エディタ生成ファイル
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# 環境設定
+.env

@@ -1,0 +1,26 @@
+<header class="site-header">
+    <!-- ロゴ -->
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/dancemaplogo.png" alt="Dance Map Logo" class="logo-img">
+        </a>
+    </div>
+
+    <!-- ナビゲーション -->
+    <nav class="site-nav">
+        <ul>
+            <li><a href="home.html" data-page="index">ホーム</a></li>
+            <li><a href="index.html" data-page="index">教室を探す</a></li>
+            <li><a href="events.html" data-page="events">イベントを探す</a></li>
+            <li><a href="contact.html" data-page="contact">お問い合わせ</a></li>
+        </ul>
+    </nav>
+    <script>
+        // 現在のページに基づいてアクティブなナビゲーションを設定
+        const currentPage = window.location.pathname.split("/").pop().split(".")[0];
+        document.querySelectorAll('.site-nav a').forEach(link => {
+            if (link.dataset.page === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>

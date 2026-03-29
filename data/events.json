@@ -1,0 +1,16 @@
+[
+    {
+        "name": "イベント名",
+        "date": "2025-03-10",
+        "prefecture": "青森県",
+        "location": "広場",
+        "description": "楽しいパーティー"
+    },
+    {
+        "name": "イベント名",
+        "date": "2025-03-11",
+        "prefecture": "青森県",
+        "location": "広場",
+        "description": "楽しいパーティー"
+    }
+]
