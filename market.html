@@ -97,6 +97,84 @@
             padding-left: 10px;
             border-left: 4px solid var(--color-1);
         }
+
+        /* 中古衣装プラットフォームカード */
+        .used-costume-section {
+            background: var(--color-3);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 36px;
+        }
+        .used-costume-section .section-sub {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin: 0 0 20px 0;
+        }
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        .platform-card {
+            background: #fff;
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 24px 16px 20px;
+            text-align: center;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .platform-card:hover {
+            border-color: var(--color-2);
+            box-shadow: 0 6px 16px rgba(27,79,114,0.1);
+        }
+        .platform-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 12px;
+        }
+        .platform-icon.mercari  { background: #FF0211; }
+        .platform-icon.yahoo    { background: #FF4F00; }
+        .platform-icon.jmty     { background: #00BF63; }
+        .platform-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 0 0 8px 0;
+        }
+        .platform-desc {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+        .platform-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            background: rgba(27,79,114,0.1);
+            color: var(--color-1);
+            margin-bottom: 14px;
+        }
+        .platform-search-btn {
+            display: block;
+            padding: 10px;
+            background: var(--color-1);
+            color: #fff;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .platform-search-btn:hover { background: #154360; color: #fff; }
+
         .costume-category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -502,6 +580,37 @@
 
         <!-- タブ1：衣装を探す -->
         <div class="tab-panel active" id="tab-search">
+
+            <!-- 中古衣装プラットフォーム -->
+            <p class="search-section-title">中古衣装を探す</p>
+            <div class="used-costume-section">
+                <p class="section-sub">メルカリ・ヤフオク・ジモティーで「社交ダンス 衣装」を直接検索できます</p>
+                <div class="platform-grid">
+                    <div class="platform-card">
+                        <div class="platform-icon mercari">🛒</div>
+                        <p class="platform-name">メルカリ</p>
+                        <p class="platform-desc">個人間売買No.1<br>手軽に出品・購入できる</p>
+                        <span class="platform-badge">出品数 最多</span>
+                        <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E8%A1%A3%E8%A3%85" target="_blank" class="platform-search-btn">🔍 検索する</a>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon yahoo">🏷️</div>
+                        <p class="platform-name">ヤフオク！</p>
+                        <p class="platform-desc">オークション形式で<br>競技用の高級衣装も</p>
+                        <span class="platform-badge">高価格帯に強い</span>
+                        <a href="https://auctions.yahoo.co.jp/search/search?p=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E8%A1%A3%E8%A3%85" target="_blank" class="platform-search-btn">🔍 検索する</a>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon jmty">📍</div>
+                        <p class="platform-name">ジモティー</p>
+                        <p class="platform-desc">地元密着・手渡しOK<br>送料なしでお得に</p>
+                        <span class="platform-badge">無料・格安あり</span>
+                        <a href="https://jmty.jp/all/sale-etc?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E8%A1%A3%E8%A3%85" target="_blank" class="platform-search-btn">🔍 検索する</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- カテゴリから探す -->
             <p class="search-section-title">カテゴリから衣装を探す</p>
             <div class="costume-category-grid">
                 <div class="costume-category-card">
