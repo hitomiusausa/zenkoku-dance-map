@@ -1,6 +1,9 @@
 # 開発用・バックアップフォルダ
 unused/
 
+# Claude Code設定（プライベート）
+.claude/
+
 # 開発用比較ページ
 comparison.html
 
