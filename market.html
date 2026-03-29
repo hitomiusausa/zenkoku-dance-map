@@ -332,6 +332,70 @@
         }
         .shop-list-note a { color: var(--color-1); }
 
+        /* ===== ページネーション ===== */
+        .shop-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+        }
+        .page-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--color-1);
+            background: #fff;
+            color: var(--color-1);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s;
+            min-width: 80px;
+        }
+        .page-btn:hover:not(:disabled) {
+            background: var(--color-1);
+            color: #fff;
+        }
+        .page-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+        .page-numbers {
+            display: flex;
+            gap: 6px;
+        }
+        .page-num {
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--color-border);
+            background: #fff;
+            color: var(--color-text);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-num.active {
+            background: var(--color-1);
+            color: #fff;
+            border-color: var(--color-1);
+        }
+        .page-num:hover:not(.active) {
+            border-color: var(--color-1);
+            color: var(--color-1);
+        }
+        .shop-count-info {
+            text-align: center;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
         /* ===== PRカード ===== */
         .pr-section {
             background: var(--color-1);
@@ -737,6 +801,14 @@
                 </div>
             </div>
 
+            <!-- ページネーション -->
+            <div class="shop-pagination" id="shopPagination">
+                <button class="page-btn" id="pagePrev">← 前へ</button>
+                <div class="page-numbers" id="pageNumbers"></div>
+                <button class="page-btn" id="pageNext">次へ →</button>
+            </div>
+            <p class="shop-count-info" id="shopCountInfo"></p>
+
             <p class="shop-list-note">
                 📋 掲載をご希望のショップ様は<a href="contact.html">お問い合わせフォーム</a>よりご連絡ください。掲載は無料です。
             </p>
@@ -775,17 +847,84 @@
     </footer>
 
     <script>
-        // ショップフィルター
+        // ===== ショップページネーション＋フィルター =====
+        const ITEMS_PER_PAGE = 6;
+        let currentPage   = 1;
+        let currentFilter = 'all';
+
+        const allCards      = Array.from(document.querySelectorAll('.shop-card'));
+        const pagePrev      = document.getElementById('pagePrev');
+        const pageNext      = document.getElementById('pageNext');
+        const pageNumbers   = document.getElementById('pageNumbers');
+        const shopCountInfo = document.getElementById('shopCountInfo');
+
+        function getFilteredCards() {
+            return allCards.filter(card =>
+                currentFilter === 'all' || card.dataset.tags.includes(currentFilter)
+            );
+        }
+
+        function renderShops() {
+            const filtered   = getFilteredCards();
+            const totalItems = filtered.length;
+            const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+
+            // ページ番号が範囲外になったら補正
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const end   = start + ITEMS_PER_PAGE;
+
+            // 全カードを一旦非表示、対象だけ表示
+            allCards.forEach(card => card.style.display = 'none');
+            filtered.forEach((card, i) => {
+                card.style.display = (i >= start && i < end) ? '' : 'none';
+            });
+
+            // ボタン有効無効
+            pagePrev.disabled = (currentPage === 1);
+            pageNext.disabled = (currentPage === totalPages);
+
+            // ページ番号ボタン
+            pageNumbers.innerHTML = '';
+            for (let p = 1; p <= totalPages; p++) {
+                const btn = document.createElement('button');
+                btn.className = 'page-num' + (p === currentPage ? ' active' : '');
+                btn.textContent = p;
+                btn.addEventListener('click', () => { currentPage = p; renderShops(); });
+                pageNumbers.appendChild(btn);
+            }
+
+            // 件数表示
+            const dispStart = totalItems === 0 ? 0 : start + 1;
+            const dispEnd   = Math.min(end, totalItems);
+            shopCountInfo.textContent =
+                totalItems === 0
+                    ? '該当するショップが見つかりませんでした'
+                    : `${totalItems}件中 ${dispStart}〜${dispEnd}件表示`;
+
+            // ページネーション自体の表示/非表示
+            document.getElementById('shopPagination').style.display =
+                totalPages <= 1 ? 'none' : 'flex';
+        }
+
+        // フィルターボタン
         document.querySelectorAll('.shop-filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.shop-filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                document.querySelectorAll('.shop-card').forEach(card => {
-                    card.style.display = (filter === 'all' || card.dataset.tags.includes(filter)) ? '' : 'none';
-                });
+                currentFilter = btn.dataset.filter;
+                currentPage   = 1;
+                renderShops();
             });
         });
+
+        // 前へ／次へ
+        pagePrev.addEventListener('click', () => { currentPage--; renderShops(); });
+        pageNext.addEventListener('click', () => { currentPage++; renderShops(); });
+
+        // 初期描画
+        renderShops();
 
         // アンカーナビ：スクロール位置に応じてアクティブ表示
         const sections = [
