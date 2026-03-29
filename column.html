@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全国ダンスマップ - コラム</title>
+    <meta name="description" content="マダム・スピンが綴る社交ダンスコラム。社交ダンスの始め方・魅力・衣装・パートナー探しまで、ユーモアあふれる記事をお届けします。">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="animate.min.css">
+    <style>
+        .column-main {
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .column-header {
+            margin-bottom: 36px;
+        }
+        .column-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-1);
+            margin: 0 0 10px 0;
+        }
+        .column-header p {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+        .note-profile-banner {
+            background: var(--color-1);
+            color: #fff;
+            border-radius: 14px;
+            padding: 22px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+        .note-profile-banner .left p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            margin: 0 0 4px 0;
+        }
+        .note-profile-banner .left strong {
+            font-size: 18px;
+            color: #fff;
+        }
+        .note-profile-banner a {
+            display: inline-block;
+            padding: 10px 22px;
+            background: var(--color-4);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        .note-profile-banner a:hover {
+            background: #e8766b;
+        }
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .article-card {
+            background: #fff;
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .article-card:hover {
+            border-color: var(--color-2);
+            box-shadow: 0 6px 20px rgba(27,79,114,0.08);
+        }
+        .article-card .thumbnail {
+            width: 130px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .article-card .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .article-card:hover .thumbnail img {
+            transform: scale(1.04);
+        }
+        .article-card .article-body {
+            padding: 18px 22px;
+            flex: 1;
+        }
+        .article-card .article-body h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 0 0 8px 0;
+            line-height: 1.5;
+        }
+        .article-card .article-body h3 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .article-card .article-body h3 a:hover {
+            color: var(--color-1);
+        }
+        .article-card .article-date {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin: 0 0 8px 0;
+        }
+        .article-card .article-desc {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .more-articles {
+            text-align: center;
+            margin-top: 36px;
+        }
+        .more-articles a {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--color-1);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .more-articles a:hover {
+            background: #154360;
+        }
+        @media (max-width: 768px) {
+            .article-card .thumbnail {
+                width: 100px;
+            }
+            .article-card .article-body {
+                padding: 14px 16px;
+            }
+            .article-card .article-body h3 {
+                font-size: 15px;
+            }
+            .note-profile-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/dancemaplogo.png" alt="Dance Map Logo"
+                    class="logo-img animate__animated animate__pulse animate__infinite animate__slow">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">教室を探す</a></li>
+                <li><a href="market.html">マーケット</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="column-main">
+
+        <div class="column-header">
+            <h1>💃 マダム・スピンのダンスコラム</h1>
+            <p>社交ダンスの魅力・始め方・衣装・パートナー探しまで、マダム・スピンがユーモアたっぷりに綴るコラムです。</p>
+        </div>
+
+        <!-- noteプロフィールバナー -->
+        <div class="note-profile-banner">
+            <div class="left">
+                <p>すべての記事を読むなら</p>
+                <strong>note「全国ダンスマップ」</strong>
+            </div>
+            <a href="https://note.com/dancemap" target="_blank">noteで読む →</a>
+        </div>
+
+        <!-- 記事一覧 -->
+        <div class="article-list">
+
+            <div class="article-card">
+                <div class="thumbnail">
+                    <img src="https://assets.st-note.com/production/uploads/images/170797288/rectangle_large_type_2_a2af20a1d64b873fde1a1b71b27f2b89.png?width=400" alt="サムネイル">
+                </div>
+                <div class="article-body">
+                    <h3><a href="https://note.com/dancemap/n/n446309e08278" target="_blank">👠 社交ダンス、どう始める？――まずは靴より勇気を持ちなさい！💃</a></h3>
+                    <p class="article-date">2025年1月21日</p>
+                    <p class="article-desc">ごきげんよう！昨日は社交ダンスって何なのよ？っていうことを記事にしてみたわ。続きをみる</p>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="thumbnail">
+                    <img src="https://assets.st-note.com/production/uploads/images/170639835/rectangle_large_type_2_3058c9fbd57784bd69239e01069a8d5c.png?width=400" alt="サムネイル">
+                </div>
+                <div class="article-body">
+                    <h3><a href="https://note.com/dancemap/n/nde790dc773cd" target="_blank">💃 「社交ダンスって何なのよ？」――優雅と情熱が交差する、危険で魅惑なフロアへようこそ。✨</a></h3>
+                    <p class="article-date">2025年1月20日</p>
+                    <p class="article-desc">そもそも「社交ダンスって何ですのん？」っていう疑問にお答えするわ。一言で「社交ダンス」って言っても結構色々種類もあって、私も最初は困惑したから！</p>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="thumbnail">
+                    <img src="https://assets.st-note.com/production/uploads/images/170497817/rectangle_large_type_2_6b987f444b3777d689ed969dfd0a9be5.png?width=400" alt="サムネイル">
+                </div>
+                <div class="article-body">
+                    <h3><a href="https://note.com/dancemap/n/n01c9e69a506a" target="_blank">💃 まだ間に合う！今こそ大人の女性が社交ダンスを始めるべき理由 ✨</a></h3>
+                    <p class="article-date">2025年1月19日</p>
+                    <p class="article-desc">忙しい毎日に、魔法のステップを。</p>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="thumbnail">
+                    <img src="https://assets.st-note.com/production/uploads/images/170660002/rectangle_large_type_2_d951ede3ed50ccc9684000caf3336725.png?width=400" alt="サムネイル">
+                </div>
+                <div class="article-body">
+                    <h3><a href="https://note.com/dancemap/n/n9b8083900a67" target="_blank">👗 衣装のファスナーは締まるのか？ダンスより痩せる方が難題よ！🥻</a></h3>
+                    <p class="article-date">2025年1月19日</p>
+                    <p class="article-desc">マダム・スピンの華麗なる気まぐれ日記シリーズよ</p>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="thumbnail">
+                    <img src="https://assets.st-note.com/production/uploads/images/170463086/rectangle_large_type_2_2ac771ae43514068177fc93814593b37.png?width=400" alt="サムネイル">
+                </div>
+                <div class="article-body">
+                    <h3><a href="https://note.com/dancemap/n/neec999eb4810" target="_blank">🕺 男性ダンサーは超レア！今こそ男性が社交ダンスを始めるべき理由 💃</a></h3>
+                    <p class="article-date">2025年1月18日</p>
+                    <p class="article-desc">フロアで求められる"希少価値"に気付かない男性たちへ、マダム・スピンからの喝！</p>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="thumbnail">
+                    <img src="https://assets.st-note.com/production/uploads/images/170353765/rectangle_large_type_2_9716d4ba460f291d55337f445ff1b851.png?width=400" alt="サムネイル">
+                </div>
+                <div class="article-body">
+                    <h3><a href="https://note.com/dancemap/n/n1dfdfb732b2b" target="_blank">💃 運動不足？趣味がない？全部まとめて社交ダンスで解決しなさい！ 🕺</a></h3>
+                    <p class="article-date">2025年1月17日</p>
+                    <p class="article-desc">スポーツジムが続かない？なら、楽しく踊って健康になればいい！</p>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="thumbnail">
+                    <img src="https://assets.st-note.com/production/uploads/images/170338165/rectangle_large_type_2_38c0605bfd3b0594c723d4a8b707f644.png?width=400" alt="サムネイル">
+                </div>
+                <div class="article-body">
+                    <h3><a href="https://note.com/dancemap/n/n740acc720b56" target="_blank">💃 古臭いなんて誰が言った？社交ダンスは全身全霊のエンタメだ！ 🕺</a></h3>
+                    <p class="article-date">2025年1月16日</p>
+                    <p class="article-desc">社交ダンスはただの踊りじゃない。魂ごと、フロアに叩きつけるのよ！</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- もっと見る -->
+        <div class="more-articles">
+            <a href="https://note.com/dancemap" target="_blank">noteでもっと読む →</a>
+        </div>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <nav>
+                <ul>
+                    <li><a href="index.html">教室を探す</a></li>
+                    <li><a href="market.html">マーケット</a></li>
+                    <li><a href="column.html">コラム</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+        <p>&copy; 全国ダンスマップ All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

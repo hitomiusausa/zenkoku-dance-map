@@ -6,142 +6,213 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全国ダンスマップ - お問い合わせ</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Noto Sans JPをGoogle Fontsから読み込み -->
-    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="animate.min.css">
+    <style>
+        .contact-main {
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .contact-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin-bottom: 28px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+        }
+        .contact-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-1);
+            margin: 0 0 20px 0;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--color-2);
+        }
+        .contact-section p {
+            font-size: 16px;
+            color: var(--color-text);
+            line-height: 1.8;
+            margin: 0 0 16px 0;
+        }
+        .contact-section p:last-child {
+            margin-bottom: 0;
+        }
+        .contact-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 14px 32px;
+            background: var(--color-1);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .contact-btn:hover {
+            background: #154360;
+            color: #fff;
+        }
+        .usami-card {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+        }
+        .usami-card img {
+            width: 140px;
+            height: auto;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        .usami-card .usami-info h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-1);
+            margin: 0 0 8px 0;
+        }
+        .usami-card .usami-info .tagline {
+            font-size: 14px;
+            color: var(--color-4);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .usami-card .usami-info p {
+            font-size: 15px;
+            color: var(--color-text);
+            line-height: 1.75;
+            margin: 0 0 16px 0;
+        }
+        .usami-link {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--color-1);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .usami-link:hover {
+            background: #154360;
+        }
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .info-list li {
+            display: flex;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0ece6;
+            font-size: 15px;
+            color: var(--color-text);
+            align-items: flex-start;
+        }
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        .info-list .label {
+            font-weight: 700;
+            color: var(--color-1);
+            min-width: 140px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 24px 20px;
+            }
+            .usami-card {
+                flex-direction: column;
+            }
+            .usami-card img {
+                width: 100px;
+            }
+            .info-list .label {
+                min-width: 110px;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <!-- ヘッダー -->
     <header class="site-header">
         <div class="logo">
-            <a href="home.html">
+            <a href="index.html">
                 <img src="images/dancemaplogo.png" alt="Dance Map Logo"
                     class="logo-img animate__animated animate__pulse animate__infinite animate__slow">
             </a>
         </div>
         <nav>
             <ul>
-                <li><a href="home.html" data-tooltip="トップページに戻ります">ホーム</a></li>
-                <li><a href="index.html" data-tooltip="全国のダンス教室・練習場・ダンス用品店などを探せます">教室を探す</a></li>
-                <li><a href="events.html" data-tooltip="全国のダンスパーティ・サークル活動・ダンス関連イベントを探せます">イベントを探す</a></li>
-                <li><a href="contact.html" data-tooltip="お問い合わせはこちら">お問い合わせ</a></li>
+                <li><a href="index.html">教室を探す</a></li>
+                <li><a href="market.html">マーケット</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- メインコンテンツ -->
-    <main>
-        <!-- メインビジュアル -->
-        <div class="main-visual">
-            <img src="images/usasa.png" alt="うさぎ" class="dance-image">
+    <main class="contact-main">
+
+        <h1 style="font-size:28px; font-weight:700; color:var(--color-1); margin:0 0 28px 0;">お問い合わせ</h1>
+
+        <!-- 掲載・情報提供 -->
+        <div class="contact-section">
+            <h2>📋 掲載内容についてのご連絡</h2>
+            <p>本サイトに掲載している社交ダンス関連情報は、全国ダンスマップが収集しダンスに興味のある方に広くご紹介しています。</p>
+            <p>掲載内容に誤りがある場合や情報を補足したい場合、または掲載の取り下げ・新規掲載をご希望の場合は、以下のフォームよりご連絡ください。<strong>掲載は無料です。</strong></p>
+            <a href="https://forms.gle/your-form-link" target="_blank" class="contact-btn">お問い合わせフォームへ</a>
         </div>
 
-        <!-- ブログについて -->
-        <div class="blognote">
-            <h1>Contact</h1>
-            <h2>
-                <p>最新のブログの投稿記事です。<br>
-                    全国ダンスマップチームのマダム・スピンが、社交ダンスにまつわるあれこれを<br>
-                    まとめているので、社交ダンスに興味がある方はぜひ目を通してみてください。</p>
-                <h2>
+        <!-- うさみみWebデザイン -->
+        <div class="contact-section">
+            <h2>🐰 うさみみWebデザイン</h2>
+            <div class="usami-card">
+                <img src="images/usasa.png" alt="うさぎキャラクター">
+                <div class="usami-info">
+                    <h3>うさみみWebデザイン</h3>
+                    <p class="tagline">お客様に見てもらえるホームページを作りたい教室運営者の方へ</p>
+                    <p>集客には、まず見つけてもらえるホームページ作成が必須！「うさみみWebデザイン」では<strong>教室事業に特化したWebデザイン</strong>を制作しています。</p>
+                    <p>一緒に地元のお客様に見つけてもらえるWebサイトを作りませんか？</p>
+                    <a href="https://usausa-design.com" target="_blank" class="usami-link">詳細を見る →</a>
+                </div>
+            </div>
         </div>
-        <div class="blogline">
-            <ul>
-                <li
-                    style='display:flex; align-items:center; margin-bottom:20px; background-color:#fdf9f3; padding:10px; border-radius:8px;'>
-                    <img src='https://assets.st-note.com/production/uploads/images/170797288/rectangle_large_type_2_a2af20a1d64b873fde1a1b71b27f2b89.png?width=800'
-                        alt='Thumbnail' style='width:100px; height:auto; margin-right:10px;'>
-                    <div>
-                        <a href='https://note.com/dancemap/n/n446309e08278' target='_blank'
-                            style='font-size:18px; font-weight:bold; text-decoration:none; color:#4e2308;'>👠社交ダンス、どう始める？――まずは靴より勇気を持ちなさい！💃</a>
-                        <p style='color:#6b4b3a; font-size:14px;'>投稿日: 2025年01月21日 17:28</p>
-                        <p style='color:#6b4b3a;'>ごきげんよう！昨日は社交ダンスって何なのよ？っていうことを記事にしてみたわ。続きをみる</p>
-                    </div>
-                </li>
 
-                <li
-                    style='display:flex; align-items:center; margin-bottom:20px; background-color:#fdf9f3; padding:10px; border-radius:8px;'>
-                    <img src='https://assets.st-note.com/production/uploads/images/170639835/rectangle_large_type_2_3058c9fbd57784bd69239e01069a8d5c.png?width=800'
-                        alt='Thumbnail' style='width:100px; height:auto; margin-right:10px;'>
-                    <div>
-                        <a href='https://note.com/dancemap/n/nde790dc773cd' target='_blank'
-                            style='font-size:18px; font-weight:bold; text-decoration:none; color:#4e2308;'>💃
-                            「社交ダンスって何なのよ？」――優雅と情熱が交差する、危険で魅惑なフロアへようこそ。 ✨</a>
-                        <p style='color:#6b4b3a; font-size:14px;'>投稿日: 2025年01月20日 16:46</p>
-                        <p style='color:#6b4b3a;'>
-                            今回は、そもそも「社交ダンスって何ですのん？」っていう疑問にお答えするわ。一言で「社交ダンス」って言っても結構色々種類もあって、私も最初は困惑したから！続きをみる</p>
-                    </div>
+        <!-- 運営情報 -->
+        <div class="contact-section">
+            <h2>ℹ️ 運営情報</h2>
+            <ul class="info-list">
+                <li>
+                    <span class="label">サイト名</span>
+                    <span>全国ダンスマップ</span>
                 </li>
-
-                <li
-                    style='display:flex; align-items:center; margin-bottom:20px; background-color:#fdf9f3; padding:10px; border-radius:8px;'>
-                    <img src='https://assets.st-note.com/production/uploads/images/170497817/rectangle_large_type_2_6b987f444b3777d689ed969dfd0a9be5.png?width=800'
-                        alt='Thumbnail' style='width:100px; height:auto; margin-right:10px;'>
-                    <div>
-                        <a href='https://note.com/dancemap/n/n01c9e69a506a' target='_blank'
-                            style='font-size:18px; font-weight:bold; text-decoration:none; color:#4e2308;'>💃
-                            まだ間に合う！今こそ大人の女性が社交ダンスを始めるべき理由 ✨</a>
-                        <p style='color:#6b4b3a; font-size:14px;'>投稿日: 2025年01月19日 22:30</p>
-                        <p style='color:#6b4b3a;'>忙しい毎日に、魔法のステップを。続きをみる</p>
-                    </div>
+                <li>
+                    <span class="label">対象ジャンル</span>
+                    <span>社交ダンス（教室・サークル・団体・関連会社）</span>
                 </li>
-
-                <li
-                    style='display:flex; align-items:center; margin-bottom:20px; background-color:#fdf9f3; padding:10px; border-radius:8px;'>
-                    <img src='https://assets.st-note.com/production/uploads/images/170660002/rectangle_large_type_2_d951ede3ed50ccc9684000caf3336725.png?width=800'
-                        alt='Thumbnail' style='width:100px; height:auto; margin-right:10px;'>
-                    <div>
-                        <a href='https://note.com/dancemap/n/n9b8083900a67' target='_blank'
-                            style='font-size:18px; font-weight:bold; text-decoration:none; color:#4e2308;'>👗
-                            衣装のファスナーは締まるのか？ダンスより痩せる方が難題よ！🥻</a>
-                        <p style='color:#6b4b3a; font-size:14px;'>投稿日: 2025年01月19日 13:48</p>
-                        <p style='color:#6b4b3a;'>マダム・スピンの華麗なる気まぐれ日記シリーズよ続きをみる</p>
-                    </div>
+                <li>
+                    <span class="label">掲載データ数</span>
+                    <span>約4,500件（全国）</span>
                 </li>
-
-                <li
-                    style='display:flex; align-items:center; margin-bottom:20px; background-color:#fdf9f3; padding:10px; border-radius:8px;'>
-                    <img src='https://assets.st-note.com/production/uploads/images/170463086/rectangle_large_type_2_2ac771ae43514068177fc93814593b37.png?width=800'
-                        alt='Thumbnail' style='width:100px; height:auto; margin-right:10px;'>
-                    <div>
-                        <a href='https://note.com/dancemap/n/neec999eb4810' target='_blank'
-                            style='font-size:18px; font-weight:bold; text-decoration:none; color:#4e2308;'>🕺
-                            男性ダンサーは超レア！今こそ男性が社交ダンスを始めるべき理由 💃</a>
-                        <p style='color:#6b4b3a; font-size:14px;'>投稿日: 2025年01月18日 22:03</p>
-                        <p style='color:#6b4b3a;'>フロアで求められる“希少価値”に気付かない男性たちへ、マダム・スピンからの喝！続きをみる</p>
-                    </div>
+                <li>
+                    <span class="label">コラム</span>
+                    <span><a href="column.html" style="color:var(--color-1);">マダム・スピンのダンスコラム</a>（note連載）</span>
                 </li>
-
-                <li
-                    style='display:flex; align-items:center; margin-bottom:20px; background-color:#fdf9f3; padding:10px; border-radius:8px;'>
-                    <img src='https://assets.st-note.com/production/uploads/images/170353765/rectangle_large_type_2_9716d4ba460f291d55337f445ff1b851.png?width=800'
-                        alt='Thumbnail' style='width:100px; height:auto; margin-right:10px;'>
-                    <div>
-                        <a href='https://note.com/dancemap/n/n1dfdfb732b2b' target='_blank'
-                            style='font-size:18px; font-weight:bold; text-decoration:none; color:#4e2308;'>💃
-                            運動不足？趣味がない？全部まとめて社交ダンスで解決しなさい！ 🕺</a>
-                        <p style='color:#6b4b3a; font-size:14px;'>投稿日: 2025年01月17日 18:26</p>
-                        <p style='color:#6b4b3a;'>スポーツジムが続かない？なら、楽しく踊って健康になればいい！続きをみる</p>
-                    </div>
-                </li>
-
-                <li
-                    style='display:flex; align-items:center; margin-bottom:20px; background-color:#fdf9f3; padding:10px; border-radius:8px;'>
-                    <img src='https://assets.st-note.com/production/uploads/images/170338165/rectangle_large_type_2_38c0605bfd3b0594c723d4a8b707f644.png?width=800'
-                        alt='Thumbnail' style='width:100px; height:auto; margin-right:10px;'>
-                    <div>
-                        <a href='https://note.com/dancemap/n/n740acc720b56' target='_blank'
-                            style='font-size:18px; font-weight:bold; text-decoration:none; color:#4e2308;'>💃
-                            古臭いなんて誰が言った？社交ダンスは全身全霊のエンタメだ！ 🕺</a>
-                        <p style='color:#6b4b3a; font-size:14px;'>投稿日: 2025年01月16日 20:07</p>
-                        <p style='color:#6b4b3a;'> 社交ダンスはただの踊りじゃない。魂ごと、フロアに叩きつけるのよ！1.
-                            社交ダンス？あぁ、あの古臭いやつね――とか言ったやつ、ちょっと表に出なさい。続きをみる</p>
-                    </div>
+                <li>
+                    <span class="label">運営</span>
+                    <span>うさみみWebデザイン</span>
                 </li>
             </ul>
         </div>
+
     </main>
 
     <!-- フッター -->
@@ -149,10 +220,10 @@
         <div class="footer-content">
             <nav>
                 <ul>
-                    <li><a href="home.html" data-page="index">ホーム</a></li>
-                    <li><a href="index.html" data-page="index">教室を探す</a></li>
-                    <li><a href="events.html" data-page="events">イベントを探す</a></li>
-                    <li><a href="contact.html" data-page="contact">お問い合わせ</a></li>
+                    <li><a href="index.html">教室を探す</a></li>
+                    <li><a href="market.html">マーケット</a></li>
+                    <li><a href="column.html">コラム</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
             </nav>
         </div>
