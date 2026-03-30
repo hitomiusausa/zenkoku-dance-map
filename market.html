@@ -195,7 +195,7 @@
         /* ===== カテゴリカード ===== */
         .costume-category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 14px;
         }
         .costume-category-card {
@@ -213,15 +213,14 @@
         }
         .cat-photo {
             width: 100%;
-            height: 110px;
+            height: 160px;
             background-size: cover;
             background-position: center;
         }
         .cat-card-body {
-            padding: 14px 14px 16px;
+            padding: 12px 14px 14px;
         }
-        .cat-icon  { font-size: 24px; display: block; margin-bottom: 7px; }
-        .cat-name  { font-size: 14px; font-weight: 700; color: var(--color-text); display: block; margin-bottom: 10px; }
+        .cat-name  { font-size: 15px; font-weight: 700; color: var(--color-text); display: block; margin-bottom: 10px; }
         .cat-search-btn {
             display: inline-block;
             padding: 7px 14px;
@@ -287,23 +286,14 @@
         .shop-card-header {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
             margin-bottom: 12px;
         }
-        .shop-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
+        .shop-dot {
+            font-size: 20px;
+            line-height: 1;
             flex-shrink: 0;
         }
-        .shop-icon.blue   { background: rgba(162,217,206,0.3); }
-        .shop-icon.pink   { background: rgba(241,148,138,0.2); }
-        .shop-icon.purple { background: rgba(165,105,189,0.2); }
-        .shop-icon.peach  { background: rgba(253,235,208,0.8); }
         .shop-name { font-size: 16px; font-weight: 700; color: var(--color-text); margin: 0; }
         .shop-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
         .shop-tag {
@@ -450,8 +440,8 @@
             .platform-grid  { grid-template-columns: repeat(2, 1fr); }
             .shop-grid      { grid-template-columns: 1fr; }
             .pr-grid        { grid-template-columns: 1fr; }
-            .costume-category-grid { grid-template-columns: repeat(3, 1fr); }
-            .cat-photo { height: 90px; }
+            .costume-category-grid { grid-template-columns: repeat(2, 1fr); }
+            .cat-photo { height: 110px; }
         }
     </style>
 </head>
@@ -469,6 +459,7 @@
             <ul>
                 <li><a href="index.html">教室を探す</a></li>
                 <li><a href="market.html">マーケット</a></li>
+                <li><a href="column.html">コラム</a></li>
                 <li><a href="contact.html">お問い合わせ</a></li>
             </ul>
         </nav>
@@ -540,7 +531,6 @@
                 <div class="costume-category-card">
                     <div class="cat-photo" style="background-image: url('images/pTCf5.png');"></div>
                     <div class="cat-card-body">
-                        <span class="cat-icon">💃</span>
                         <span class="cat-name">競技ドレス</span>
                         <a href="https://auctions.yahoo.co.jp/search/search?p=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E7%AB%B6%E6%8A%80%E3%83%89%E3%83%AC%E3%82%B9" target="_blank" class="cat-search-btn">🔍 検索する</a>
                         <span class="cat-platform-note">ヤフオクで検索</span>
@@ -549,7 +539,6 @@
                 <div class="costume-category-card">
                     <div class="cat-photo" style="background-image: url('images/B9ug0.png');"></div>
                     <div class="cat-card-body">
-                        <span class="cat-icon">👗</span>
                         <span class="cat-name">パーティドレス</span>
                         <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%83%89%E3%83%AC%E3%82%B9" target="_blank" class="cat-search-btn">🔍 検索する</a>
                         <span class="cat-platform-note">メルカリで検索</span>
@@ -558,7 +547,6 @@
                 <div class="costume-category-card">
                     <div class="cat-photo" style="background-image: url('images/n6c58.png');"></div>
                     <div class="cat-card-body">
-                        <span class="cat-icon">👠</span>
                         <span class="cat-name">ダンスシューズ</span>
                         <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA" target="_blank" class="cat-search-btn">🔍 検索する</a>
                         <span class="cat-platform-note">メルカリで検索</span>
@@ -567,7 +555,6 @@
                 <div class="costume-category-card">
                     <div class="cat-photo" style="background-image: url('images/vzKNk.png');"></div>
                     <div class="cat-card-body">
-                        <span class="cat-icon">💎</span>
                         <span class="cat-name">アクセサリー</span>
                         <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5%E3%83%AA%E3%83%BC" target="_blank" class="cat-search-btn">🔍 検索する</a>
                         <span class="cat-platform-note">メルカリで検索</span>
@@ -576,7 +563,6 @@
                 <div class="costume-category-card">
                     <div class="cat-photo" style="background-image: url('images/sg4rP.png');"></div>
                     <div class="cat-card-body">
-                        <span class="cat-icon">🕺</span>
                         <span class="cat-name">メンズ衣装</span>
                         <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E3%83%A1%E3%83%B3%E3%82%BA+%E8%A1%A3%E8%A3%85" target="_blank" class="cat-search-btn">🔍 検索する</a>
                         <span class="cat-platform-note">メルカリで検索</span>
@@ -585,7 +571,6 @@
                 <div class="costume-category-card">
                     <div class="cat-photo" style="background-image: url('images/jzo8I.png');"></div>
                     <div class="cat-card-body">
-                        <span class="cat-icon">📦</span>
                         <span class="cat-name">その他用品</span>
                         <a href="https://jp.mercari.com/search/?keyword=%E7%A4%BE%E4%BA%A4%E3%83%80%E3%83%B3%E3%82%B9+%E7%94%A8%E5%93%81" target="_blank" class="cat-search-btn">🔍 検索する</a>
                         <span class="cat-platform-note">メルカリで検索</span>
@@ -614,7 +599,7 @@
                 <!-- 実店舗あり -->
                 <div class="shop-card" data-tags="shop mail rental order">
                     <div class="shop-card-header">
-                        <div class="shop-icon pink">👗</div>
+                        <span class="shop-dot" style="color:#e85d8a">●</span>
                         <h3 class="shop-name">ドレスのフジタ</h3>
                     </div>
                     <div class="shop-tags">
@@ -631,7 +616,7 @@
                 </div>
                 <div class="shop-card" data-tags="shop mail rental">
                     <div class="shop-card-header">
-                        <div class="shop-icon pink">🌸</div>
+                        <span class="shop-dot" style="color:#9b59b6">●</span>
                         <h3 class="shop-name">白樺ドレス</h3>
                     </div>
                     <div class="shop-tags">
@@ -646,7 +631,7 @@
                 </div>
                 <div class="shop-card" data-tags="shop mail">
                     <div class="shop-card-header">
-                        <div class="shop-icon pink">🎽</div>
+                        <span class="shop-dot" style="color:#2980b9">●</span>
                         <h3 class="shop-name">ダンスファッション マツヤ</h3>
                     </div>
                     <div class="shop-tags">
@@ -660,7 +645,7 @@
                 </div>
                 <div class="shop-card" data-tags="shop rental">
                     <div class="shop-card-header">
-                        <div class="shop-icon peach">🎀</div>
+                        <span class="shop-dot" style="color:#e67e22">●</span>
                         <h3 class="shop-name">ダンスブティック JOAN</h3>
                     </div>
                     <div class="shop-tags">
@@ -675,7 +660,7 @@
                 </div>
                 <div class="shop-card" data-tags="shop rental">
                     <div class="shop-card-header">
-                        <div class="shop-icon peach">🌟</div>
+                        <span class="shop-dot" style="color:#27ae60">●</span>
                         <h3 class="shop-name">ダンスショップ オラクル</h3>
                     </div>
                     <div class="shop-tags">
@@ -691,7 +676,7 @@
                 <!-- 通販・オーダー -->
                 <div class="shop-card" data-tags="mail">
                     <div class="shop-card-header">
-                        <div class="shop-icon blue">🌍</div>
+                        <span class="shop-dot" style="color:#16a085">●</span>
                         <h3 class="shop-name">ボールルームネット</h3>
                     </div>
                     <div class="shop-tags">
@@ -706,7 +691,7 @@
                 </div>
                 <div class="shop-card" data-tags="mail rental order">
                     <div class="shop-card-header">
-                        <div class="shop-icon blue">👠</div>
+                        <span class="shop-dot" style="color:#c0392b">●</span>
                         <h3 class="shop-name">タカダンス</h3>
                     </div>
                     <div class="shop-tags">
@@ -721,7 +706,7 @@
                 </div>
                 <div class="shop-card" data-tags="mail order">
                     <div class="shop-card-header">
-                        <div class="shop-icon purple">✨</div>
+                        <span class="shop-dot" style="color:#8e44ad">●</span>
                         <h3 class="shop-name">社交ダンス衣装 ジルバ</h3>
                     </div>
                     <div class="shop-tags">
@@ -736,7 +721,7 @@
                 </div>
                 <div class="shop-card" data-tags="mail order">
                     <div class="shop-card-header">
-                        <div class="shop-icon purple">💜</div>
+                        <span class="shop-dot" style="color:#1abc9c">●</span>
                         <h3 class="shop-name">Drecy（ドレシー）</h3>
                     </div>
                     <div class="shop-tags">
@@ -751,7 +736,7 @@
                 </div>
                 <div class="shop-card" data-tags="mail order">
                     <div class="shop-card-header">
-                        <div class="shop-icon purple">💫</div>
+                        <span class="shop-dot" style="color:#f39c12">●</span>
                         <h3 class="shop-name">社交ダンス衣装アルル</h3>
                     </div>
                     <div class="shop-tags">
@@ -766,7 +751,7 @@
                 </div>
                 <div class="shop-card" data-tags="shop mail">
                     <div class="shop-card-header">
-                        <div class="shop-icon pink">🏔</div>
+                        <span class="shop-dot" style="color:#2c3e50">●</span>
                         <h3 class="shop-name">OTOI（オトイ）</h3>
                     </div>
                     <div class="shop-tags">
@@ -782,7 +767,7 @@
                 </div>
                 <div class="shop-card" data-tags="shop mail rental order">
                     <div class="shop-card-header">
-                        <div class="shop-icon pink">🌺</div>
+                        <span class="shop-dot" style="color:#d35400">●</span>
                         <h3 class="shop-name">ダンスファッショングレース</h3>
                     </div>
                     <div class="shop-tags">
@@ -799,7 +784,7 @@
                 </div>
                 <div class="shop-card" data-tags="shop mail">
                     <div class="shop-card-header">
-                        <div class="shop-icon pink">🎵</div>
+                        <span class="shop-dot" style="color:#3498db">●</span>
                         <h3 class="shop-name">ソワール</h3>
                     </div>
                     <div class="shop-tags">
@@ -814,7 +799,7 @@
                 </div>
                 <div class="shop-card" data-tags="mail rental order">
                     <div class="shop-card-header">
-                        <div class="shop-icon blue">🌿</div>
+                        <span class="shop-dot" style="color:#6c3483">●</span>
                         <h3 class="shop-name">ダンスファッション シルフィード</h3>
                     </div>
                     <div class="shop-tags">
@@ -830,7 +815,7 @@
                 </div>
                 <div class="shop-card" data-tags="mail order">
                     <div class="shop-card-header">
-                        <div class="shop-icon purple">👑</div>
+                        <span class="shop-dot" style="color:#e74c3c">●</span>
                         <h3 class="shop-name">アリス</h3>
                     </div>
                     <div class="shop-tags">
